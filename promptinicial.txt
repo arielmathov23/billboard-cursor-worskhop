@@ -1,161 +1,228 @@
-PLAN — VIBE CODER JOURNEY BILLBOARD
+PLAN — VIBE CODER BILLBOARD
 Stack: Next.js (App Router)
 Idioma: Español
-Objetivo: generar una web simple, linda y publicable desde el primer commit
+Objetivo: construir una web simple, publicable y bien diseñada desde el primer commit
 
 --------------------------------------------------
-1. CONTEXTO Y OBJETIVO
+1. CONTEXTO GENERAL
 --------------------------------------------------
 
 Vamos a construir una web de una sola página que funcione como
-un billboard personal del workshop “Vibe Coder Journey”.
+un billboard personal del workshop.
 
-No es una app compleja.
-Es una pieza visual bien diseñada, editable y compartible.
+No es una demo técnica.
+Es una pieza de producto pequeña, cuidada y compartible.
 
 El foco está en:
-- claridad de intención
-- buen criterio visual
-- código simple y fácil de modificar
+- criterio de producto
+- claridad visual
+- código simple y editable
+- buen uso de IA como acelerador, no como magia
 
 --------------------------------------------------
 2. CONCEPTO DEL PRODUCTO
 --------------------------------------------------
 
 La página permite a cada persona:
-- sacarse una foto desde la cámara
-- verla integrada en un layout cuidado
-- personalizar algunos aspectos desde el código
+
+- sacarse una foto con la cámara
+- integrarla en un layout visual atractivo
+- personalizar algunos elementos desde el código
+- descargar una imagen final limpia (sin UI)
 - quedarse con un repo propio + un commit hecho
 
-El resultado debería ser algo que alguien
-realmente quiera publicar o compartir.
-
-Tono general:
-moderno, minimalista, sutil, calmado, profesional
+Debe sentirse como algo que alguien
+realmente podría compartir.
 
 --------------------------------------------------
-3. ESTRUCTURA GENERAL DE LA PÁGINA
+3. TEXTO Y COPY (FIJOS)
 --------------------------------------------------
 
-Página única, centrada, con mucho aire.
+Título principal (exacto):
+"Hoy empecé mi camino como Vibe coder"
 
-Orden visual:
-1. Título
-2. Foto
-3. Metadata (nombre + fecha)
-4. Footer
-
-Textos fijos (en español):
-- Título: "Vibe Coder Journey"
-- Fecha (hardcodeada): "22 de enero de 2026"
+Fecha (hardcodeada):
+"22 de enero de 2026"
 
 Nombre de la persona:
 - NO editable por input
-- Definido como constante en el código
-  (ej: const PARTICIPANT_NAME = "Tu Nombre")
+- definido como constante en el código
+  (ej: const PARTICIPANT_NAME = "Tu nombre")
+
+Todo el contenido debe estar en español.
 
 --------------------------------------------------
-4. CÁMARA (REQUISITO CLAVE)
+4. ESTRUCTURA VISUAL DE LA PÁGINA
 --------------------------------------------------
 
-Implementar una cámara simple y robusta.
+Layout vertical, centrado, con aire.
+
+Orden:
+1. Título
+2. Foto circular
+3. Nombre + fecha
+4. Controles (cámara / descargar)
+5. Footer
+
+Diseño:
+- minimalista
+- moderno
+- editorial
+- sin ruido visual
+
+--------------------------------------------------
+5. CÁMARA (CRÍTICO)
+--------------------------------------------------
+
+Implementar cámara usando APIs nativas del browser.
 
 Requisitos técnicos:
-- navigator.mediaDevices.getUserMedia
-- preview en vivo con <video>
-- captura usando <canvas>
-- aspect ratio 1:1
-- resolución razonable (ej: 512x512)
+- usar navigator.mediaDevices.getUserMedia
+- mostrar preview en vivo con <video>
+- capturar imagen usando <canvas>
+- relación 1:1
+- imagen clara, sin glitches ni pantallas negras
 
-UX:
-- placeholder visual antes de activar cámara
-- botón claro: "Tomar foto"
-- feedback visual correcto al sacar la foto
+IMPORTANTE (bug a evitar):
+- el <video> debe existir en el DOM ANTES de asignar srcObject
+- no condicionar el render del <video> a un estado posterior
+- conectar el stream solo cuando el ref del video esté disponible
+- manejar correctamente el lifecycle con useEffect + refs
 
-Resultado:
-- la imagen final se muestra dentro de un círculo
+Objetivo:
+una cámara que funcione siempre, sin estados frágiles.
+
+--------------------------------------------------
+6. CAPTURA Y RESULTADO
+--------------------------------------------------
+
+Al sacar la foto:
+- se congela la imagen
+- se renderiza dentro de un círculo
 - bien centrada
 - sin distorsión
-
-No usar librerías externas para la cámara.
+- lista para exportar
 
 --------------------------------------------------
-5. BACKGROUND (MUY IMPORTANTE)
+7. DESCARGA DE IMAGEN (NUEVO)
 --------------------------------------------------
 
-El fondo es parte central del ejercicio.
+Agregar un botón “Descargar imagen”.
+
+Requisitos:
+- debe generar una imagen final
+- SIN botones, inputs o UI
+- solo:
+  - background
+  - foto
+  - título
+  - nombre
+  - fecha
+
+Implementación sugerida:
+- usar canvas
+- renderizar composición limpia
+- exportar como PNG
+
+El botón debe estar al lado de “Tomar foto”.
+
+--------------------------------------------------
+8. BACKGROUND (CLAVE DE DISEÑO)
+--------------------------------------------------
+
+El fondo define la identidad visual.
+
+Referencia obligatoria:
+- archivo en /public: 021-dithering-background.png
+- debe usarse como referencia estética de dithering y patrón
+- NO copiar literalmente, sino interpretar el estilo
 
 Estilo:
-- paleta pastel
+- pastel
+- muy sutil
+- gradiente leve de bottom-left a top-right
 - dominante monocromática (verde por defecto)
-- gradiente muy sutil:
-  desde bottom-left (más claro)
-  hacia top-right (apenas más oscuro)
 
 --------------------------------------------------
-6. DITHERING / PATRÓN VISUAL
+9. DITHERING / PATRÓN
 --------------------------------------------------
 
 NO usar:
 - ruido random
-- grain
+- grain agresivo
 - efectos artísticos pesados
 
 SÍ usar:
-- patrón geométrico tipo grid
-- pequeños cuadrados
+- patrón geométrico
+- cuadrados pequeños
+- opacidades bajas
 - variaciones mínimas de tono
-- opacidad baja
 
-El fondo debe sentirse:
-editorial / calmado / data-viz sutil
+Debe sentirse:
+- calmado
+- moderno
+- editorial
+- similar a visualizaciones de datos suaves
 
 --------------------------------------------------
-7. PERSONALIZACIÓN DE COLOR
+10. COLOR PICKER
 --------------------------------------------------
 
-Agregar un color picker simple que permita:
+Agregar un color picker simple para:
 - cambiar el tono principal del background
 
-Debe ser:
-- fácil de entender
+Requisitos:
+- simple
+- entendible
 - fácil de modificar en el código
 - sin sobre-ingeniería
 
 --------------------------------------------------
-8. ESTILO VISUAL GENERAL
+11. FOOTER
+--------------------------------------------------
+
+Footer discreto.
+
+Contenido:
+- logo fijo desde el repo: @logozerotwoone.png
+- a su derecha: link "from021.io"
+
+No debe competir con el contenido principal.
+
+--------------------------------------------------
+12. ESTILO GENERAL
 --------------------------------------------------
 
 - tipografía simple (system font o una sola fuente limpia)
 - bordes suaves
-- sombras mínimas o inexistentes
+- sombras mínimas o ninguna
 - sin animaciones innecesarias
 - diseño que “respire”
 
-Si algo no suma al concepto, no se agrega.
+Si algo no suma al objetivo, no se agrega.
 
 --------------------------------------------------
-9. FOOTER
+13. CRITERIOS DE CALIDAD
 --------------------------------------------------
 
-Footer discreto y simple.
-
-Contenido:
-- logo fijo desde el repo: @logozerotwoone.png
-- a la derecha del logo: link "from021.io"
-
-El footer no debe competir con el contenido principal.
-
---------------------------------------------------
-10. CRITERIOS DE CALIDAD
---------------------------------------------------
-
-- todo el texto en español
+- todo en español
 - código claro y comentado
-- variables fáciles de editar:
+- constantes fáciles de editar:
   - nombre
   - color principal
-- evitar sobre-ingeniería
-- pensar esto como un objeto de producto real,
-  no como una demo técnica
+- evitar complejidad innecesaria
+- pensar esto como un mini producto real
+
+--------------------------------------------------
+14. MENTALIDAD
+--------------------------------------------------
+
+Esto no es “hacer que funcione”.
+
+Es:
+- pensar producto
+- diseñar con intención
+- usar IA con criterio
+- colaborar mejor con devs
+
+Construir como si fuera a mostrarse públicamente.
