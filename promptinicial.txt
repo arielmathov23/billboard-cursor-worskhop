@@ -1,0 +1,161 @@
+PLAN — VIBE CODER JOURNEY BILLBOARD
+Stack: Next.js (App Router)
+Idioma: Español
+Objetivo: generar una web simple, linda y publicable desde el primer commit
+
+--------------------------------------------------
+1. CONTEXTO Y OBJETIVO
+--------------------------------------------------
+
+Vamos a construir una web de una sola página que funcione como
+un billboard personal del workshop “Vibe Coder Journey”.
+
+No es una app compleja.
+Es una pieza visual bien diseñada, editable y compartible.
+
+El foco está en:
+- claridad de intención
+- buen criterio visual
+- código simple y fácil de modificar
+
+--------------------------------------------------
+2. CONCEPTO DEL PRODUCTO
+--------------------------------------------------
+
+La página permite a cada persona:
+- sacarse una foto desde la cámara
+- verla integrada en un layout cuidado
+- personalizar algunos aspectos desde el código
+- quedarse con un repo propio + un commit hecho
+
+El resultado debería ser algo que alguien
+realmente quiera publicar o compartir.
+
+Tono general:
+moderno, minimalista, sutil, calmado, profesional
+
+--------------------------------------------------
+3. ESTRUCTURA GENERAL DE LA PÁGINA
+--------------------------------------------------
+
+Página única, centrada, con mucho aire.
+
+Orden visual:
+1. Título
+2. Foto
+3. Metadata (nombre + fecha)
+4. Footer
+
+Textos fijos (en español):
+- Título: "Vibe Coder Journey"
+- Fecha (hardcodeada): "22 de enero de 2026"
+
+Nombre de la persona:
+- NO editable por input
+- Definido como constante en el código
+  (ej: const PARTICIPANT_NAME = "Tu Nombre")
+
+--------------------------------------------------
+4. CÁMARA (REQUISITO CLAVE)
+--------------------------------------------------
+
+Implementar una cámara simple y robusta.
+
+Requisitos técnicos:
+- navigator.mediaDevices.getUserMedia
+- preview en vivo con <video>
+- captura usando <canvas>
+- aspect ratio 1:1
+- resolución razonable (ej: 512x512)
+
+UX:
+- placeholder visual antes de activar cámara
+- botón claro: "Tomar foto"
+- feedback visual correcto al sacar la foto
+
+Resultado:
+- la imagen final se muestra dentro de un círculo
+- bien centrada
+- sin distorsión
+
+No usar librerías externas para la cámara.
+
+--------------------------------------------------
+5. BACKGROUND (MUY IMPORTANTE)
+--------------------------------------------------
+
+El fondo es parte central del ejercicio.
+
+Estilo:
+- paleta pastel
+- dominante monocromática (verde por defecto)
+- gradiente muy sutil:
+  desde bottom-left (más claro)
+  hacia top-right (apenas más oscuro)
+
+--------------------------------------------------
+6. DITHERING / PATRÓN VISUAL
+--------------------------------------------------
+
+NO usar:
+- ruido random
+- grain
+- efectos artísticos pesados
+
+SÍ usar:
+- patrón geométrico tipo grid
+- pequeños cuadrados
+- variaciones mínimas de tono
+- opacidad baja
+
+El fondo debe sentirse:
+editorial / calmado / data-viz sutil
+
+--------------------------------------------------
+7. PERSONALIZACIÓN DE COLOR
+--------------------------------------------------
+
+Agregar un color picker simple que permita:
+- cambiar el tono principal del background
+
+Debe ser:
+- fácil de entender
+- fácil de modificar en el código
+- sin sobre-ingeniería
+
+--------------------------------------------------
+8. ESTILO VISUAL GENERAL
+--------------------------------------------------
+
+- tipografía simple (system font o una sola fuente limpia)
+- bordes suaves
+- sombras mínimas o inexistentes
+- sin animaciones innecesarias
+- diseño que “respire”
+
+Si algo no suma al concepto, no se agrega.
+
+--------------------------------------------------
+9. FOOTER
+--------------------------------------------------
+
+Footer discreto y simple.
+
+Contenido:
+- logo fijo desde el repo: @logozerotwoone.png
+- a la derecha del logo: link "from021.io"
+
+El footer no debe competir con el contenido principal.
+
+--------------------------------------------------
+10. CRITERIOS DE CALIDAD
+--------------------------------------------------
+
+- todo el texto en español
+- código claro y comentado
+- variables fáciles de editar:
+  - nombre
+  - color principal
+- evitar sobre-ingeniería
+- pensar esto como un objeto de producto real,
+  no como una demo técnica
